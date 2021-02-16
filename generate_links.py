@@ -52,5 +52,3 @@ def gen_func(file_loc, year, doc_type):
     output = links_df.to_excel('test_links.xlsx', encoding="UTF-16", index=False)
 
     return links_df
-
-print(gen_func(r"C:\Users\Harry\Python\GWI_scrapers\SEC-scraper\CIK-codes-test.xlsx", "2019", "10-k"))

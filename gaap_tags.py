@@ -30,7 +30,7 @@ gaap_tags = ['us-gaap:CashAndCashEquivalentsAtCarryingValue', 'us-gaap:AccountsR
  'us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents', 'us-gaap:IncomeTaxesPaid', 'us-gaap:InterestPaidCapitalized', 
  'us-gaap:BusinessCombinationConsiderationTransferredEquityInterestsIssuedAndIssuable']
 
-gwi_tags = ['Cash and cash equivalents', 'Accounts receivable, net current', 'Inventories', 'Other receivables and current assets', 'Total current assets', 
+standard_tags = ['Cash and cash equivalents', 'Accounts receivable, net current', 'Inventories', 'Other receivables and current assets', 'Total current assets', 
 'Property and equipment, net', 'Other intangible assets, net', 'Goodwill', 'Other long-term assets', 'Total assets', 'Long-term debt, current', 
 'Accounts payable', 'Accrued and other current liabilities', 'Total current liabilities', 'Long-term debt', 'Deferred income tax liabilities', 
 'Deferred income taxes', 'Deferred tax liabilities, gross non current', 'Other long-term liabilities', 'Total liabilities', 'Common stock value',
@@ -57,7 +57,7 @@ gwi_tags = ['Cash and cash equivalents', 'Accounts receivable, net current', 'In
 
 # To get gaap tags in string list above
 import pandas as pd
-map_df = pd.DataFrame({'metric': gaap_tags, 'GWI metric': gwi_tags})
+map_df = pd.DataFrame({'metric': gaap_tags, 'Standard metric': standard_tags})
 # df = pd.read_excel("./tax_shift.xlsx", encoding="UTF-16")
 # df = df.to_dict('list')
 # new_dict = dict(zip(gaap_tags, gwi_tags))

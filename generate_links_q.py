@@ -42,9 +42,6 @@ def get_file(cik, doc_type, year, company):
     
     return links
 
-    # except:
-    #     return []
-
 def gen_func(file_loc, year, doc_type):
     upload = pd.read_excel(file_loc, encoding="UTF-16")
 
@@ -58,5 +55,3 @@ def gen_func(file_loc, year, doc_type):
     links_df.to_excel('test_links.xlsx', encoding="UTF-16", index=False)
 
     return links_df
-
-#print(gen_func(r"C:\Users\Harry\Python\GWI_scrapers\SEC-scraper\CIK-codes-test.xlsx", "2019", "10-q"))

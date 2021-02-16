@@ -74,7 +74,7 @@ def main_func(year, up_file):
 
     df_out = df_out.merge(map_df, how='left', left_on='Metric', right_on='metric')
     df_out.drop(columns=['Metric', 'metric'], inplace=True)
-    df_out = df_out[['Company','GWI metric','Value','Units', 'FYE']]
+    df_out = df_out[['Company','Standard metric','Value','Units', 'FYE']]
 
     pattern1 = '^(.+)?' + prior_year + '(.+)?'
     pattern2 = '^(.+)?' + year + '(.+)?'
