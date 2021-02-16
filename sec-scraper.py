@@ -4,6 +4,7 @@ import requests
 import re
 from generate_links import gen_func
 from gaap_tags import gaap_tags
+from gaap_tags import map_df
 
 def get_data(link, company, dates):
 
@@ -72,7 +73,23 @@ def main_func(years, up_file):
             pass
         else:
             df_out = df_out.append(df)
-            df_out = df_out.drop(['decimals', 'id'], axis=1)
+            #df_out = df_out.drop(['decimals', 'id'], axis=1)
+
+    df_out = df_out.drop(['id', 'decimals'], axis = 1)
+    df_out.columns = ['Metric', 'FYE', 'Units', 'Value', 'Company']
+    
+    df_out['Units'] = df_out['Units'].replace('^(.*)?(?i)usd(.+)?|Unit1', 'USD', regex=True)
+
+    df_out = df_out.merge(map_df, how='left', left_on='Metric', right_on='metric')
+    df_out.drop(columns=['Metric', 'metric'], inplace=True)
+    df_out = df_out[['Company','GWI metric','Value','Units', 'FYE']]
+
+    pattern1 = '^(.+)?' + prior_year + '(.+)?'
+    pattern2 = '^(.+)?' + years + '(.+)?'
+    df_out['Year'] = df_out['FYE']
+    df_out['Year'] = df_out['Year'].str.replace(pattern2, years)
+    df_out['Year'] = df_out['Year'].str.replace(pattern1, prior_year)
+    
 
     df_out.to_excel('test_output.xlsx', encoding="UTF-16", index=False)
 

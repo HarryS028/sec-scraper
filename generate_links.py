@@ -15,7 +15,7 @@ def get_file(cik, doc_type, year):
         most_recent = df['Filing Date'][0]
         rec_year = re.search(r'\d{4}', most_recent).group()
         if year > rec_year:
-            return "Financials for this year have not yet been reported."
+            return "Financials not available for this year"
 
         search = df[df['Filing Date'].str.contains(year)]
         desc = search['Description'].to_string()
@@ -37,10 +37,10 @@ def get_file(cik, doc_type, year):
         return address
 
     except:
-        return "Financials for this year are not available"
+        return "Financials not available for this year"
 
 def gen_func(file_loc, year, doc_type):
-    upload = pd.read_excel(file_loc, encoding="UTF-16")
+    upload = pd.read_excel(file_loc)
 
     links_list = []
     for i in range(len(upload['CIK code'])):
@@ -53,4 +53,4 @@ def gen_func(file_loc, year, doc_type):
 
     return links_df
 
-#print(gen_func(r"C:\Users\Harry\Python\GWI_scrapers\SEC-scraper\CIK-codes-test.xlsx", "2019"))
+print(gen_func(r"C:\Users\Harry\Python\GWI_scrapers\SEC-scraper\CIK-codes-test.xlsx", "2019", "10-k"))
